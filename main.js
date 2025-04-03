@@ -45,7 +45,7 @@ async function loadSights(url) {
     //console.log(jsondata);
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(map);
+    }).addTo(overlays.sights);
 }
 
 // Kraftfahrlinien Wien
@@ -54,7 +54,7 @@ async function loadLines(url) {
     let jsondata = await response.json();
     L.geoJSON(jsondata, {
          attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(map);
+    }).addTo(overlays.lines);
 }
 
 // Haltestellen Wien
@@ -63,7 +63,7 @@ async function loadStops(url) {
     let jsondata = await response.json();
     L.geoJSON(jsondata, {
          attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(map);
+    }).addTo(overlays.stops);
 }
 
 // Fußgängerzonen Wien
@@ -72,7 +72,7 @@ async function loadZones(url) {
     let jsondata = await response.json();
     L.geoJSON(jsondata, {
          attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(map);
+    }).addTo(overlays.zones);
 }
 
 // GeoJSON laden und visualisieren
