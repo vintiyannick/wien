@@ -100,7 +100,18 @@ async function loadStops(url) {
     let response = await fetch(url);
     let jsondata = await response.json();
     L.geoJSON(jsondata, {
-        attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>"
+        attribution: "Datenquelle: <a href='https://data.wien.gv.at'> Stadt Wien</a>",
+        pointToLayer: function(feature, latlng) {
+            console.log(feature.properties);
+
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: `icons/bus_${feature.properties.LINE_ID}.png`,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
+        }
     }).addTo(overlays.stops);
 }
 
