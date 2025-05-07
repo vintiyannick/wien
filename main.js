@@ -104,6 +104,15 @@ async function loadLines(url) {
             return {
                 color: lineColor
             }
+        },
+        onEachFeature: function(feature, layer) {
+            //console.log(feature.properties);
+            layer.bindPopup(`
+                <h4><i class="fa-solid fa-bus"></i> ${feature.properties.LINE_NAME}</h4>
+                <p><i class="fa-regular fa-circle-stop"></i> ${feature.properties.FROM_NAME}</p>
+                <p><i class="fa-solid fa-down-long"></i></p>
+                <p><i class="fa-regular fa-circle-stop"></i> ${feature.properties.TO_NAME}</p>
+                `);
         }
     }).addTo(overlays.lines);
 }
@@ -124,6 +133,13 @@ async function loadStops(url) {
                     popupAnchor: [0, -37]
                 })
             });
+        },
+        onEachFeature: function(feature, layer) {
+             //console.log(feature.properties);
+             layer.bindPopup(`
+                <h4><i class="fa-solid fa-bus"></i> ${feature.properties.LINE_NAME}</h4>
+                ${feature.properties.STAT_ID} ${feature.properties.STAT_NAME}
+                `);
         }
     }).addTo(overlays.stops);
 }
@@ -142,6 +158,14 @@ async function loadZones(url) {
                 opacity: 0.4,
                 fillOpacity: 0.1,
             }
+        },
+        onEachFeature: function(feature, layer) {
+            //console.log(feature.properties);
+            layer.bindPopup(`
+                <h4>Fußgängerzone ${feature.properties.ADRESSE}</h4>
+                <p><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM}</p>
+                <p><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT}</p>
+                `);
         }
     }).addTo(overlays.zones);
 }
@@ -178,6 +202,17 @@ async function loadHotels(url) {
                     popupAnchor: [0, -37]
                 })
             });
+        },
+        onEachFeature: function(feature, layer) {
+            //console.log(feature.properties);
+            layer.bindPopup(`
+                <h4>${feature.properties.BETRIEB}</h4>
+                <h5>Hotel ${feature.properties.KATEGORIE_TXT}</h5>
+                <hr>
+                <p>Addr: ${feature.properties.ADRESSE}</p>
+                <p><i class="fa-solid fa-phone"></i>: <a href="${feature.properties.KONTAKT_TEL}" target="wien">${feature.properties.KONTAKT_TEL}</a></p>
+                <i class="fa-solid fa-at"></i>: <a href="${feature.properties.KONTAKT_EMAIL}" target="wien">${feature.properties.KONTAKT_EMAIL} </a>
+                `);
         }
     }).addTo(overlays.hotels);
 }
