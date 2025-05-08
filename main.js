@@ -209,9 +209,10 @@ async function loadHotels(url) {
                 <h4>${feature.properties.BETRIEB}</h4>
                 <h5>Hotel ${feature.properties.KATEGORIE_TXT}</h5>
                 <hr>
-                <p>Addr: ${feature.properties.ADRESSE}</p>
-                <p><i class="fa-solid fa-phone"></i>: <a href="${feature.properties.KONTAKT_TEL}" target="wien">${feature.properties.KONTAKT_TEL}</a></p>
-                <i class="fa-solid fa-at"></i>: <a href="${feature.properties.KONTAKT_EMAIL}" target="wien">${feature.properties.KONTAKT_EMAIL} </a>
+                Addr: ${feature.properties.ADRESSE}<br>
+                <i class="fa-solid fa-phone"></i>: <a href="tel:${feature.properties.KONTAKT_TEL}">${feature.properties.KONTAKT_TEL}</a><br>
+                <i class="fa-solid fa-at"></i>: <a href="mailto:${feature.properties.KONTAKT_EMAIL}">${feature.properties.KONTAKT_EMAIL}</a><br>
+                <a href="${feature.properties.WEBLINK}" target="wien">Homepage</a><br>
                 `);
         }
     }).addTo(overlays.hotels);
